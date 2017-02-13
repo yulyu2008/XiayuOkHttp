@@ -14,6 +14,12 @@ import com.zhy.http.okhttp.OkHttpUtils;
  */
 public class MovieUtils {
     public static void getMovie(int start, int count, XiayuCallBack<MovieEntity> callBack) {
-        OkHttpUtils.get().url("https://api.douban.com/v2/movie/top250").addHeader("MovieUtils","start").addParams("start",start+"").addParams("count",count+"").build().execute(callBack);
+        OkHttpUtils.get()
+                .url("https://api.douban.com/v2/movie/top250")
+                .addHeader("MovieUtils","start")
+                .addParams("start",start+"")
+                .addParams("count",count+"")
+                .build()
+                .execute(callBack);
     }
 }

@@ -29,6 +29,7 @@ public class MyApplication extends Application
     public void onCreate()
     {
         super.onCreate();
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoggerInterceptor("TAG"))
                 .addNetworkInterceptor(new Interceptor() {//自定义拦截器
@@ -36,11 +37,11 @@ public class MyApplication extends Application
                     public Response intercept(Chain chain) throws IOException {
                         Request  request  = chain.request();
                         //配置统一的头
-                        Request  newRequest     = request.newBuilder().addHeader("xiayu", "xiayu").build();
+                        Request  newRequest     = request.newBuilder().addHeader("head", "xiayu").build();
                         return  chain.proceed(newRequest);
                     }
                 })
-                .addNetworkInterceptor( new StethoInterceptor())//增加Stetho拦截器
+                .addNetworkInterceptor( new StethoInterceptor())//增加Stetho拦截器,用于调试
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 //其他配置
