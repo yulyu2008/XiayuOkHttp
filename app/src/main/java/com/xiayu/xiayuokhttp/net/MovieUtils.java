@@ -1,8 +1,7 @@
 package com.xiayu.xiayuokhttp.net;
 
 import com.xiayu.xiayuokhttp.bean.MovieEntity;
-import com.xiayu.xiayuokhttp.library.okhttp.OkHttpUtils;
-import com.xiayu.xiayuokhttp.library.okhttp.callback.XiayuCallBack;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 /**
  * 创建者     罗夏雨

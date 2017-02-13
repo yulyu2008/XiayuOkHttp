@@ -3,8 +3,8 @@ package com.xiayu.xiayuokhttp.app;
 import android.app.Application;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.xiayu.xiayuokhttp.library.okhttp.OkHttpUtils;
-import com.xiayu.xiayuokhttp.library.okhttp.log.LoggerInterceptor;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -29,23 +29,23 @@ public class MyApplication extends Application
     public void onCreate()
     {
         super.onCreate();
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoggerInterceptor("TAG"))
-                .addNetworkInterceptor(new Interceptor() {
+                .addNetworkInterceptor(new Interceptor() {//自定义拦截器
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request  request  = chain.request();
+                        //配置统一的头
                         Request  newRequest     = request.newBuilder().addHeader("xiayu", "xiayu").build();
                         return  chain.proceed(newRequest);
                     }
                 })
-                .addNetworkInterceptor( new StethoInterceptor())
+                .addNetworkInterceptor( new StethoInterceptor())//增加Stetho拦截器
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 //其他配置
                 .build();
-
+        //使用自定义OkHttpClient
         OkHttpUtils.initClient(okHttpClient);
 
     }
