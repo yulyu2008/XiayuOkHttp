@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void getData(View v) {
         MovieUtils.getMovie(10, 10, new XiayuCallBack<MovieEntity>(MovieEntity.class, this, false) {
+
+
             @Override
-            public void onError(Call call, Exception e, int id) {
+            public void myError(Call call, Exception e, int id) {
                 System.out.println("onError");
             }
 
@@ -50,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataWithProgress(View v) {
         MovieUtils.getMovie(0, 10, new XiayuCallBack<MovieEntity>(MovieEntity.class, this, true) {
+
+
             @Override
-            public void onError(Call call, Exception e, int id) {
+            public void myError(Call call, Exception e, int id) {
                 System.out.println("onError");
             }
 
